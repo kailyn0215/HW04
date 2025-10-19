@@ -4,39 +4,34 @@ import java.util.Scanner;
 
 public class DriverHW04 {
     public static void main(String[] args) throws FileNotFoundException {
-        if (args.length < 2) {
-            System.out.println("Usage: java Driver01 uszipcodes.csv ziplocs.csv");
+        if (args.length != 2) {
+            System.out.println("Usage: java DriverHW04 uszipcodes.csv ziplocs.csv");
             return;
         }
+
         String file1 = args[0];
         String file2 = args[1];
 
         ExpandableArray<Place> places = LookupZip.readZipCodes(file1, file2);
-
         Scanner in = new Scanner(System.in);
+
         while (true) {
             System.out.print("zipcode: ");
-            if (!in.hasNextLine()) { // EOF
+            if (!in.hasNextLine()) {
                 System.out.println("Good Bye!");
                 break;
             }
+
             String z = in.nextLine().trim();
-            if (z.length() == 0) {
-                // continue prompting
-                continue;
-            }
+            if (z.length() == 0) continue;
             if (z.equals("00000")) {
                 System.out.println("Good Bye!");
                 break;
             }
-            int idx = LookupZip.indexOfZip(places, z);
-            if (idx == -1) {
-                System.out.println("No such zipcode");
-            } else {
-                Place p = places.get(idx);
-                System.out.println(p.toString());
-            }
-            System.out.println();
+
+            Place p = LookupZip.lookupZip(places, z);
+            if (p == null) System.out.println("No such zipcode");
+            else System.out.println(p.toString());
         }
         in.close();
     }

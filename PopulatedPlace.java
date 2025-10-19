@@ -1,12 +1,3 @@
-/**
- * File name: PopulatedPlace.java
- * Author: Kailyn Brown
- * Date: 9/19/2025
- * Purpose: extends LocatedPlace by adding population data.
- *          used when geographic + population info
- *          is known for a zipcode.
- */
-
 public class PopulatedPlace extends LocatedPlace {
     protected int population;
 
@@ -19,13 +10,12 @@ public class PopulatedPlace extends LocatedPlace {
         return population;
     }
 
-    @Override // overrides locatedplace
+    @Override
     public String toString() {
         if (population > 0) {
             String base = super.toString();
-            return base + " " + population;
+            return base + " Population: " + population;
         }
-        return null;
-        
+        return super.toString();
     }
 }

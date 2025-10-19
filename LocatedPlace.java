@@ -1,10 +1,3 @@
-/**
- * File name: LocatedPlace.java
- * Author: Kailyn Brown
- * Date: 9/19/2025
- * Purpose: extends Place by adding latitude and longitude
- */
-
 public class LocatedPlace extends Place {
     protected double latitude;
     protected double longitude;
@@ -23,9 +16,9 @@ public class LocatedPlace extends Place {
         return longitude;
     }
 
-    @Override // overrides place
+    @Override
     public String toString() {
         String base = super.toString();
-        return base + " " + String.format("%.2f", latitude) + " " + String.format("%.2f", longitude);
+        return base + String.format(" (%.2f, %.2f)", latitude, longitude);
     }
 }
